@@ -5,6 +5,7 @@ import {
     View,
     Image,
     TouchableOpacity,
+    BackHandler,
 } from 'react-native'
 import { Container, Content, Button } from 'native-base';
 import { Actions } from 'react-native-router-flux';
@@ -19,30 +20,25 @@ class WellcomeScreen extends Component {
     }
 
     async componentDidMount() {
-        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+        // BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     }
 
     componentWillReceiveProps(props) {
-        if (props.dataLogin.hasLoggedIn) {
-            this.setState({
-                loadingState: false
-            });
-            Actions.Home()
-        }
+
     }
 
     componentWillUnmount() {  
-      	BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+      	// BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
 
-    handleBackPress = () => {
-		Actions.Home()
-		return true;
-	}
+    // handleBackPress = () => {
+	// 	Actions.MainActivity()
+	// 	return true;
+	// }
 
     render() {
         return (
-            <Container style={{backgroundColor: '#E5E5E5'}}>
+            <Container>
                 <View style={styles.txtView}>
                         <Text style={styles.txtStyle}> Selamat Datang Di </Text>
                         <Text style={styles.txtStyle}> FTTI Mobile </Text>
@@ -71,7 +67,7 @@ const mapStateToProps = (state) => ({
 
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(WellcomeScreen);
+export default (WellcomeScreen);
 
 const styles = StyleSheet.create({
     container: {

@@ -7,6 +7,7 @@ import {
     Text,
     TouchableOpacity,
     Image,
+    BackHandler,
 } from 'react-native';
 import {connect} from 'react-redux';
 import {Actions} from 'react-native-router-flux';
@@ -70,7 +71,7 @@ const mapStateToProps = (state) => ({
 
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Chat);
+export default (Chat);
 
 const styles = StyleSheet.create({
     container: {

@@ -13,8 +13,9 @@ import {Root} from 'native-base';
 import {connect} from 'react-redux';
 
 // import menu screens
-import MainMenu from './src/screens/Home/Main';
+import MainMenu from './src/screens/MainMenu/Main';
 import WellcomeScreen from './src/screens/WellcomeScreen';
+import Wellcome from './src/screens/WellcomeScreen';
 import MainActivity from './src/screens/MainActivity';
 import SwitchLogin from './src/screens/Profile/SwitchLogin';
 import LoginDosen from './src/screens/Profile/LoginDosen'
@@ -32,7 +33,6 @@ class Routing extends Component {
     render() {
         return (
             <SafeAreaView style={styles.container}>
-                <Loader show={this.props.loadingOS} />
                 <Root>
                     <StatusBar
                         barStyle='light-content'
@@ -62,7 +62,7 @@ const mapStateToProps = (state) => ({
 
 });
 
-export default connect(mapStateToProps)(Routing);
+export default (Routing);
 
 const styles = StyleSheet.create({
     container: {

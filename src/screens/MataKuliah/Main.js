@@ -7,6 +7,7 @@ import {
     Text,
     TouchableOpacity,
     Image,
+    BackHandler,
 } from 'react-native';
 import {connect} from 'react-redux';
 import {Actions} from 'react-native-router-flux';
@@ -70,7 +71,7 @@ const mapStateToProps = (state) => ({
 
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Matkul);
+export default (Matkul);
 
 const styles = StyleSheet.create({
     container: {
