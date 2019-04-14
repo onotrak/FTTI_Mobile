@@ -1,16 +1,13 @@
-import React, {Component} from 'react';
-import {
-    StyleSheet,
-    SafeAreaView,
+import React, { Component } from 'react'
+import { 
+    Text, 
+    StyleSheet, 
     View,
-    Alert,
-    Text,
-    TouchableOpacity,
     Image,
-} from 'react-native';
-import {connect} from 'react-redux';
-import {Actions} from 'react-native-router-flux';
-import { Header, Left, Body, Right, Container, Content, Icon } from 'native-base';
+    TouchableOpacity,
+} from 'react-native'
+import { Container, Content, Button } from 'native-base';
+import { Actions } from 'react-native-router-flux';
 
 class WellcomeScreen extends Component {
 
@@ -46,21 +43,25 @@ class WellcomeScreen extends Component {
     render() {
         return (
             <Container style={{backgroundColor: '#E5E5E5'}}>
-                <Header style={{backgroundColor: 'white'}}>
-                    <Left style={{flex: 0.8, flexDirection: 'row'}}>
-                        <TouchableOpacity transparent
-                            style={{ marginLeft: 10, marginRight: 15}}
-                            onPress={() => this.props.navigation.goBack()}>
-                            <Icon name='ios-arrow-round-back' style={{color:"#D14165", fontSize: 40}} />
+                <View style={styles.txtView}>
+                        <Text style={styles.txtStyle}> Selamat Datang Di </Text>
+                        <Text style={styles.txtStyle}> FTTI Mobile </Text>
+                        <Text style={styles.txtStyle}> Application </Text>
+                    </View>
+                    <View style={styles.imgView}>
+                        <Image 
+                            style={styles.imgLogo}
+                            source={require('./../assets/images/images/unjani_logo.png')}
+                        />
+                    </View>
+                    <View style={styles.btnView}>
+                        <TouchableOpacity
+                            style={styles.btn}
+                            onPress={Actions.switchLogin}
+                        >
+                            <Text style={styles.txtBtn}> Lanjutkan </Text>
                         </TouchableOpacity>
-                        <Text style={{color: '#D14165', alignSelf: 'center', fontSize: 18, fontWeight: 'bold'}}>onotrak</Text>
-                    </Left>
-                    <Body style={{flex: 0.1}}></Body>
-                    <Right style={{flex: 0.1}}></Right>
-                </Header>
-                <Content style={{backgroundColor: '#E5E5E5'}}>
-                    
-                </Content>
+                    </View>
             </Container>
         )
     }
@@ -74,26 +75,59 @@ export default connect(mapStateToProps, mapDispatchToProps)(WellcomeScreen);
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+		flex: 1,
+		backgroundColor: '#fff',
+		alignItems: 'center',
+		justifyContent: 'center',
+    },
+    content: {
+        flex: 5,
+        margin: 16,
+        backgroundColor: '#036e64',
+        borderRadius: 5,
+        alignContent: 'center'
+    },
+    txtView: {
+        flex: 1.2,
+        alignContent: 'center',
+        alignItems: 'center',
+        margin: 10,
+    },
+    txtStyle: {
+        fontWeight: 'bold',
+        fontSize: 25,
+        color: '#FFFFFF'
+    },
+    imgView: {
+        flex: 3,
+        margin: 10,
+    },
+    imgLogo: {
+        width:window.width, 
+        height:undefined, 
+        aspectRatio:900/650, 
+        resizeMode:'stretch',
+    },
+    btnView: {
+        flex: 0.7,
+        marginTop: 30,
+        marginRight: 10,
+        alignItems: 'flex-end',
+        justifyContent: 'flex-end',
+    },
+    btn: {
+        width: 120,
+        height: 40,
+        padding: 5,
+        backgroundColor: 'white',
+        borderRadius: 30,
+        borderColor: '#0ad7c4',
+        borderWidth: 2,
         alignItems: 'center',
         justifyContent: 'center',
     },
-    card: { 
-        marginLeft: 18,
-        marginRight: 18,
-        marginBottom: 10,
-        padding: 10,
-        backgroundColor: 'white',
-        borderColor: '#ddd',
-        borderBottomWidth: 0,
-        borderRadius: 4,
-
-        //shadow
-        // elevation: 3,
-        // borderColor: 'darkgrey',
-        // shadowColor: 'darkgrey',
-        // shadowOffset: { width: 0, height: 1 },
-        // shadowOpacity: 0.5,
-        // shadowRadius: 4,
+    txtBtn: {
+        fontWeight: 'bold',
+        color: '#036e64'
     },
 });

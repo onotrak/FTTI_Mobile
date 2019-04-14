@@ -14,6 +14,12 @@ import {connect} from 'react-redux';
 
 // import menu screens
 import MainMenu from './src/screens/Home/Main';
+import WellcomeScreen from './src/screens/WellcomeScreen';
+import MainActivity from './src/screens/MainActivity';
+import SwitchLogin from './src/screens/Profile/SwitchLogin';
+import LoginDosen from './src/screens/Profile/LoginDosen'
+import LoginMhs from './src/screens/Profile/LoginMhs'
+import Register from './src/screens/Profile/Register';
 
 class Routing extends Component {
     constructor(props) {
@@ -36,6 +42,12 @@ class Routing extends Component {
                         <Scene key="root">
                             <Scene key="WellcomeScreen" component={WellcomeScreen} hideNavBar/>
                             <Scene key="MainMenu" component={MainMenu} hideNavBar/>
+                            <Scene key="main" component={ MainActivity } title= "Main Activity" initial={ true }/>
+                            <Scene key="welcome" component={ Wellcome } title= "Welcome"/>
+                            <Scene key="switchLogin" component={ SwitchLogin } title= "Login"/>
+                            <Scene key="loginDosen" component={ LoginDosen } title= "Login Dosen"/>
+                            <Scene key="loginMhs" component={ LoginMhs } title= "Login Mahasiswa"/>
+                            <Scene key="register" component={ Register } title= "Register"/>
                         </Scene>
                     </Router>
                 </Root>
