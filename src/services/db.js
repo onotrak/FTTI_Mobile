@@ -1,15 +1,29 @@
-import * as firebase from 'firebase';
+import * as firebase from 'firebase';  // Initialize Firebase
+	var fireBaseconfig = {
+		apiKey: "AIzaSyB7QCwwSWdW_wHk2LmdrJZ1rg-1pyIj4A4",
+		authDomain: "asa-project-569.firebaseapp.com",
+		databaseURL: "https://asa-project-569.firebaseio.com",
+		storageBucket: "asa-project-569.appspot.com",
 
-// Initialize Firebase
-const firebaseConfig = {
-  apiKey: "AIzaSyB7QCwwSWdW_wHk2LmdrJZ1rg-1pyIj4A4",
-  authDomain: "asa-project-569.firebaseapp.com",
-  databaseURL: "https://asa-project-569.firebaseio.com",
-  storageBucket: "asa-project-569.appspot.com",
+		projectId: "asa-project-569",
+		messagingSenderId: "202189590286",
+	};
+	firebase.initializeApp(fireBaseconfig);
+const firebaseApp = firebase.initializeApp(fireBaseconfig);
 
-  projectId: "asa-project-569",
-  messagingSenderId: "202189590286",
-};
+
+// import * as firebase from 'firebase';
+
+// // Initialize Firebase
+// const firebaseConfig = {
+//   apiKey: "AIzaSyB7QCwwSWdW_wHk2LmdrJZ1rg-1pyIj4A4",
+//   authDomain: "asa-project-569.firebaseapp.com",
+//   databaseURL: "https://asa-project-569.firebaseio.com",
+//   storageBucket: "asa-project-569.appspot.com",
+
+//   projectId: "asa-project-569",
+//   messagingSenderId: "202189590286",
+// };
 
 
 {/* import Firebase from 'firebase';

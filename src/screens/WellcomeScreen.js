@@ -53,7 +53,7 @@ class WellcomeScreen extends Component {
                     <View style={styles.btnView}>
                         <TouchableOpacity
                             style={styles.btn}
-                            onPress={Actions.switchLogin}
+                            onPress={Actions.switchLogin()}
                         >
                             <Text style={styles.txtBtn}> Lanjutkan </Text>
                         </TouchableOpacity>
@@ -115,6 +115,7 @@ const styles = StyleSheet.create({
         width: 120,
         height: 40,
         padding: 5,
+        marginBottom: 10,
         backgroundColor: 'white',
         borderRadius: 30,
         borderColor: '#0ad7c4',

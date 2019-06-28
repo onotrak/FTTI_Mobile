@@ -5,9 +5,9 @@ const fetch = async (url , options = {
     body: {}
 }) => {
     const request = {
-        baseURL: "https://asa-project-569.firebaseio.com/users",
+        baseURL: "https://asa-project-569.firebaseio.com/users/",
         method: options.method,
-        timeout: 10000,
+        timeout: 5000,
         url,
         headers: options.head
     };

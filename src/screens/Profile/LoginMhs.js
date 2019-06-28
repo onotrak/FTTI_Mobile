@@ -47,7 +47,7 @@ export default class LoginMhs extends Component {
                         />
                         <TouchableOpacity 
                             style={styles.btn}
-                            // onPress={Actions}
+                            onPress={ () => _onLoginPress()}
                         >
                             <Text style={styles.txtLogin}>LOGIN</Text>
                         </TouchableOpacity>
@@ -71,6 +71,26 @@ export default class LoginMhs extends Component {
             </Container>
         )
     }
+
+    _onLoginPress = () => {
+        this.props.firebaseApp.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((userData) =>
+            {
+                this.setState({
+                    loading: false
+                });
+                AsyncStorage.setItem('userData', JSON.stringify(userData));
+                this.props.navigator.push({
+                    component: Account
+                });
+            }
+        ).catch((error) =>
+            {
+                this.setState({
+                    loading: false
+                });
+            alert('Login Failed. Please try again'+error);
+        });
+    } 
 }
 
 const styles = StyleSheet.create({
