@@ -1,5 +1,5 @@
 import {Toast} from 'native-base';
-import moment from 'moment';
+// import moment from 'moment';
 import { AsyncStorage } from "react-native";
 
 // export const fbappId = '299508480710316';
@@ -7,46 +7,46 @@ import { AsyncStorage } from "react-native";
 // export const IOSGoogleAppID = '426547881660-sobcminkh64qrp4asbp8ot6b8nll1790.apps.googleusercontent.com';
 // export const webGoogleID = '426547881660-vtimv488kgcjd7uef6rionqvdtioukks.apps.googleusercontent.com';
 
-export const errorMessage = (error) => {
-    const output = JSON.parse(JSON.stringify(error));
-    let message = '';
-    if (output.response) {
-        message = output.response.data.message ? output.response.data.message : output.response.statusText;
-    } else {
-        message = 'Whoops an error occured, please try again';
-    }
-    return message;
-};
+// export const errorMessage = (error) => {
+//     const output = JSON.parse(JSON.stringify(error));
+//     let message = '';
+//     if (output.response) {
+//         message = output.response.data.message ? output.response.data.message : output.response.statusText;
+//     } else {
+//         message = 'Whoops an error occured, please try again';
+//     }
+//     return message;
+// };
 
-export const convertCurrency = (nominal, currency) => {
-    let rupiah = '';
-    const angkarev = nominal.toString().split('').reverse().join('');
-    for (let i = 0; i < angkarev.length; i++) if (i % 3 === 0) rupiah += angkarev.substr(i, 3) + '.';
+// export const convertCurrency = (nominal, currency) => {
+//     let rupiah = '';
+//     const angkarev = nominal.toString().split('').reverse().join('');
+//     for (let i = 0; i < angkarev.length; i++) if (i % 3 === 0) rupiah += angkarev.substr(i, 3) + '.';
 
-    if (currency) {
-        return currency + rupiah.split('', rupiah.length - 1).reverse().join('');
-    } else {
-        return rupiah.split('', rupiah.length - 1).reverse().join('');
-    }
-};
+//     if (currency) {
+//         return currency + rupiah.split('', rupiah.length - 1).reverse().join('');
+//     } else {
+//         return rupiah.split('', rupiah.length - 1).reverse().join('');
+//     }
+// };
 
-export const validateEmail = (email) => {
-    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+// export const validateEmail = (email) => {
+//     let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-    return re.test(String(email).toLowerCase());
-};
+//     return re.test(String(email).toLowerCase());
+// };
 
-export const groupBy = (array, f) => {
-    let groups = {};
-    array.forEach(function (o) {
-        let group = JSON.stringify(f(o));
-        groups[group] = groups[group] || [];
-        groups[group].push(o);
-    });
-    return Object.keys(groups).map(function (group) {
-        return groups[group];
-    })
-};
+// export const groupBy = (array, f) => {
+//     let groups = {};
+//     array.forEach(function (o) {
+//         let group = JSON.stringify(f(o));
+//         groups[group] = groups[group] || [];
+//         groups[group].push(o);
+//     });
+//     return Object.keys(groups).map(function (group) {
+//         return groups[group];
+//     })
+// };
 
 // export const getOrderStatus = (number) => {
 //     let output = '';
@@ -74,12 +74,13 @@ export const groupBy = (array, f) => {
 // };
 
 
-export const showMessage = (text, type) => {
+export const showToast = (text, type) => {
     return Toast.show({
         text: text,
-        buttonText: "Ok",
+        // buttonText: "Ok",
         type: type,
-        position: 'top'
+        position: 'top',
+        // duration: duration ? duration : 3000,
     });
 };
 
@@ -106,39 +107,39 @@ export const showMessage = (text, type) => {
 //     }
 // };
 
-export const changeDatetime = (date) => {
-    let today = false;
-    if (moment().format('YYYY-MM-DD') === moment(date.toString()).format('YYYY-MM-DD')) {
-        today = true;
-    }
-    let dateSplit = date.toString().split(' ');
-    let output = '';
-    for (let i = 0; i < dateSplit.length; i++) {
-        if (i === 4) {
-            if (today) {
-                output += moment().format('HH:mm:ss') + ' '
-            } else {
-                output += '00:00:00' + ' '
-            }
-        } else {
-            output += dateSplit[i] + ' '
-        }
+// export const changeDatetime = (date) => {
+//     let today = false;
+//     if (moment().format('YYYY-MM-DD') === moment(date.toString()).format('YYYY-MM-DD')) {
+//         today = true;
+//     }
+//     let dateSplit = date.toString().split(' ');
+//     let output = '';
+//     for (let i = 0; i < dateSplit.length; i++) {
+//         if (i === 4) {
+//             if (today) {
+//                 output += moment().format('HH:mm:ss') + ' '
+//             } else {
+//                 output += '00:00:00' + ' '
+//             }
+//         } else {
+//             output += dateSplit[i] + ' '
+//         }
 
-    }
-    // output = `${output[0]} ${output[1]} ${output[2]} ${output[3]} ${ today ? moment().format('HH:mm:ss'):'00:00:00'} ${output[5]} ${output[6]} ${output[7]} ${output[8]}`;
+//     }
+//     // output = `${output[0]} ${output[1]} ${output[2]} ${output[3]} ${ today ? moment().format('HH:mm:ss'):'00:00:00'} ${output[5]} ${output[6]} ${output[7]} ${output[8]}`;
 
-    return output;
-};
+//     return output;
+// };
 
-export const savePassengerHistory = async (passengers) => {
-    let passengersHistory = await AsyncStorage.getItem('passengers');
-        passengersHistory = passengersHistory ? JSON.parse(passengersHistory):[];
-        passengersHistory.push(passengers);
-    return AsyncStorage.setItem('passengers', JSON.stringify(passengersHistory));
-}
+// export const savePassengerHistory = async (passengers) => {
+//     let passengersHistory = await AsyncStorage.getItem('passengers');
+//         passengersHistory = passengersHistory ? JSON.parse(passengersHistory):[];
+//         passengersHistory.push(passengers);
+//     return AsyncStorage.setItem('passengers', JSON.stringify(passengersHistory));
+// }
 
-export const QueryString = (params) => {
-    return Object.keys(params).map((key) => {
-        return key + '=' + params[key]
-    }).join('&');
-}
+// export const QueryString = (params) => {
+//     return Object.keys(params).map((key) => {
+//         return key + '=' + params[key]
+//     }).join('&');
+// }

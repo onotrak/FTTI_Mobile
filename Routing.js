@@ -19,7 +19,7 @@ import Wellcome from './src/screens/WellcomeScreen';
 import MainActivity from './src/screens/MainActivity';
 import SwitchLogin from './src/screens/Profile/SwitchLogin';
 import LoginDosen from './src/screens/Profile/LoginDosen'
-import LoginMhs from './src/screens/Profile/LoginMhs'
+import Login from './src/screens/Profile/Login'
 import Register from './src/screens/Profile/Register';
 
 class Routing extends Component {
@@ -46,7 +46,7 @@ class Routing extends Component {
                             <Scene key="welcome" component={ Wellcome } title= "Welcome"/>
                             <Scene key="switchLogin" component={ SwitchLogin } title= "Login"/>
                             <Scene key="loginDosen" component={ LoginDosen } title= "Login Dosen"/>
-                            <Scene key="loginMhs" component={ LoginMhs } title= "Login Mahasiswa"/>
+                            <Scene key="Login" component={ Login } title= "Login"/>
                             <Scene key="register" component={ Register } title= "Register"/>
                         </Scene>
                     </Router>

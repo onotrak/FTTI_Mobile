@@ -39,7 +39,7 @@ export default class Login extends Component {
                         <View style={styles.btnView}>
                             <TouchableOpacity
                                 style={styles.btn}
-                                onPress={Actions.loginDosen}
+                                onPress={()=> Actions.Login({typeUser: 'Dosen'})}
                             >
                                 <Text style={styles.txtBtn}>
                                     Dosen
@@ -47,7 +47,7 @@ export default class Login extends Component {
                             </TouchableOpacity>
                             <TouchableOpacity
                                 style={styles.btn}
-                                onPress={Actions.loginMhs}
+                                onPress={()=>Actions.Login({typeUser: 'Mahasiswa'})}
                             >
                                 <Text style={styles.txtBtn}>
                                     Mahasiswa
