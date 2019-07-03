@@ -18,7 +18,6 @@ import WellcomeScreen from './src/screens/WellcomeScreen';
 import Wellcome from './src/screens/WellcomeScreen';
 import MainActivity from './src/screens/MainActivity';
 import SwitchLogin from './src/screens/Profile/SwitchLogin';
-import LoginDosen from './src/screens/Profile/LoginDosen'
 import Login from './src/screens/Profile/Login'
 import Register from './src/screens/Profile/Register';
 
@@ -43,11 +42,10 @@ class Routing extends Component {
                             <Scene key="WellcomeScreen" component={WellcomeScreen} hideNavBar/>
                             <Scene key="MainMenu" component={MainMenu} hideNavBar/>
                             <Scene key="main" component={ MainActivity } title= "Main Activity" initial={ true }/>
-                            <Scene key="welcome" component={ Wellcome } title= "Welcome"/>
-                            <Scene key="switchLogin" component={ SwitchLogin } title= "Login"/>
-                            <Scene key="loginDosen" component={ LoginDosen } title= "Login Dosen"/>
-                            <Scene key="Login" component={ Login } title= "Login"/>
-                            <Scene key="register" component={ Register } title= "Register"/>
+                            <Scene key="welcome" component={ Wellcome } hideNavBar/>
+                            <Scene key="switchLogin" component={ SwitchLogin } hideNavBar/>
+                            <Scene key="Login" component={ Login } hideNavBar/>
+                            <Scene key="register" component={ Register } hideNavBar/>
                         </Scene>
                     </Router>
                 </Root>

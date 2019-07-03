@@ -5,12 +5,30 @@ import {
     View,
     TouchableOpacity,
     TextInput,
+    ToastAndroid
 } from 'react-native'
 import { Container, Content } from 'native-base';
 import { Actions } from 'react-native-router-flux';
+import AppVersion from '../../../app.json';
+import { loginUser } from '../../services/api.js';
+import { connect } from 'react-redux';
 // import * as firebase from 'firebase';
 
-export default class LoginMhs extends Component {
+const mapStateToProps = (state) => { 
+    return {
+      dataLogin: state.dataLogin,
+      loginDosen: state.loginDosen,
+      loginMahasiswa: state.loginMahasiswa,
+    };
+};
+  
+const mapDispatchToProps = (dispatch) => {
+    return {
+      loginUser: (body) => {dispatch(loginUser(body))},
+    };
+};
+
+class LoginMhs extends Component {
     constructor(props) {
         super(props)
         
@@ -33,7 +51,7 @@ export default class LoginMhs extends Component {
             <Container>
                 <Content style={styles.content}>
                     { 
-                        this.props.typeUser === 'Mahasiswa' ? 
+                        this.props.typeUser === 'mahasiswa' ? 
                         <View>
                             <Text style={styles.txtTitle}>
                                 Login Mahasiswa
@@ -74,17 +92,19 @@ export default class LoginMhs extends Component {
                             <TextInput
                                 style={styles.txtInput}
                                 placeholder= 'Masukan username'
-                                plac
                                 autoCapitalize= 'none'
+                                onChangeText= {(text)=> this.setState({nim: text})}
                             />
                             <TextInput
                                 style={styles.txtInput}
                                 placeholder= 'Masukan password'
+                                keyboardType= 'phone-pad'
                                 autoCapitalize= 'none'
+                                onChangeText= {(text)=> this.setState({password: text})}
                             />
                             <TouchableOpacity 
                                 style={styles.btn}
-                                // onPress={Actions}
+                                onPress={ () => this._onLoginPress()}
                             >
                                 <Text style={styles.txtLogin}>LOGIN</Text>
                             </TouchableOpacity>
@@ -99,7 +119,7 @@ export default class LoginMhs extends Component {
                 </Content>
                 <View style={{marginBottom: 5}}>
                     <Text style={styles.txtVersion}>
-                        Version 1.1.1
+                        Version {AppVersion.version}
                     </Text>
                     <Text style={styles.txtVersion}>
                         React Native
@@ -110,9 +130,27 @@ export default class LoginMhs extends Component {
     }
 
     _onLoginPress = () => {
+        const { nim, password } = this.state
 
+        if(nim === ''){
+            return ToastAndroid.show(this.props.typeUser === 'mahasiswa' ? 'Masukan Nim Terlebih Dahulu !' : 'Masukan Username Terlebih Dahulu !', ToastAndroid.SHORT);
+            // return showToast('Data Register Belum Lengkap !', 'warning')
+        }
+        if(password.length < 4){
+            return ToastAndroid.show('Password Minimal 4 Karakter !', ToastAndroid.SHORT);
+            // return showToast('Password Minimal 4 Karakter !', 'warning')
+        }
+
+        const body = {
+            nim,
+            password,
+            typeUser: this.props.typeUser
+        }
+        loginUser(body)
     } 
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginMhs);
 
 const styles = StyleSheet.create({
     content: {

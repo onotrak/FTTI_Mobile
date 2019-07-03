@@ -1,60 +1,118 @@
 import { db } from './db';
 
-export const registerMahasiswa =  (item) => {
-    db.ref(`/users/mahasiswa/${item.nim}`).set({
-        nama: item.nama,
-        nohp: item.nohp,
-        password: item.password
-    }).then((data)=>{
-        //success callback
-        console.log('data ' , data)
-    }).catch((error)=>{
-        //error callback
-        console.log('error ' , error)
-    })
+const registerMahasiswa = (item) => {
+    return dispatch => {
+        db.ref(`/users/mahasiswa/${item.nim}`).set({
+            nama: item.nama,
+            nohp: item.nohp,
+            password: item.password
+        }).then((data)=>{
+            //success callback
+            console.log('data ' , data)
+        }).catch((error)=>{
+            //error callback
+            console.log('error ' , error)
+        })
+    }
+}
+
+const loginUser = (item) => {
+    // return dispatch => {
+        db.ref(`/users/${item.typeUser}/${item.nim}`).once('value', function (snapshot) {
+            console.log('data login', snapshot.val())
+            if(item.typeUser === 'mahasiswa'){
+                if(snapshot.val() !== null){
+                    if (item.password === snapshot.val().password){
+                        const response = snapshot.val()
+                        console.log('success', response)
+                        // return dispatch({ type: 'LOGIN_MAHASISWA', response });
+                    } else {
+                        const response = 'Password Salah !'
+                        console.log(response)
+                        // return dispatch({ type: 'LOGIN_MAHASISWA_ERROR', response });
+                    }
+                } else {
+                    const response = 'Nim Tidak Ditemukan !'
+                    console.log(response)
+                    // return dispatch({ type: 'LOGIN_MAHASISWA_ERROR', response });
+                }
+            } else {
+                if(snapshot.val() !== null){
+                    if (item.password === snapshot.val().password){
+                        const response = snapshot.val()
+                        console.log('success', response)
+                        // return dispatch({ type: 'LOGIN_DOSEN', response });
+                    } else {
+                        const response = 'Password Salah !'
+                        console.log(response)
+                        // return dispatch({ type: 'LOGIN_DOSEN_ERROR', response });
+                    }
+                } else {
+                    const response = 'Username Tidak Ditemukan !'
+                    console.log(response)
+                    // return dispatch({ type: 'LOGIN_DOSEN_ERROR', response });
+                }
+            }
+        })
+    // }
+}
+
+export {
+    loginUser,
+    registerMahasiswa,
 }
 
 
-// import axios from 'axios';
+//its work dont touch
+// export const registerMahasiswa = (item) => {
+//     db.ref(`/users/mahasiswa/${item.nim}`).set({
+//         nama: item.nama,
+//         nohp: item.nohp,
+//         password: item.password
+//     }).then((data)=>{
+//         //success callback
+//         console.log('data ' , data)
+//     }).catch((error)=>{
+//         //error callback
+//         console.log('error ' , error)
+//     })
+// }
 
-// const fetch = async (url , options = {
-//     method: 'GET',
-//     body: {}
-// }) => {
-//     const request = {
-//         baseURL: "https://asa-project-569.firebaseio.com/users/",
-//         method: options.method,
-//         timeout: 5000,
-//         url,
-//         headers: options.head
-//     };
-//     if (request.method === "POST"){ request.data = options.body }
-//     else if (request.method === "PUT"){ request.data = options.body }
-//     const res = await axios(request);
-//     if (res.status === 200) {
-//         return res.data
-//     } else {
-//         throw res
-//     }
-// };
-
-// export default {
-//     getLoginMhs : () =>{
-//         return fetch('https://asa-project-569.firebaseio.com/users/mahasiswa.json',{
-//             method: "GET",
-//             head:{
-//                 "Content-Type" : "application/json",
-//                 "Accept" : "application/json",
-//             },
-//         })
-//     },
-//     getLoginDosen : () =>{
-//         return fetch('dosen',{
-//             method: "GET",
-//             head:{
-//                 "Content-Type" : "application/json",
-//                 "Accept" : "application/json",
-//             },
-//         })
-//     },
+// export const loginUser = (item) => {
+//     db.ref(`/users/${item.typeUser}/${item.nim}`).once('value', function (snapshot) {
+//         console.log('data login', snapshot.val())
+//         if(item.typeUser === 'mahasiswa'){
+//             if(snapshot.val() !== null){
+//                 if (item.password === snapshot.val().password){
+//                     const response = snapshot.val()
+//                     console.log('success', response)
+//                     return dispatch({ type: 'LOGIN_MAHASISWA', response });
+//                 } else {
+//                     const response = 'Password Salah !'
+//                     console.log(response)
+//                     return dispatch({ type: 'LOGIN_MAHASISWA_ERROR', response });
+//                 }
+//             } else {
+//                 const response = 'Nim Tidak Ditemukan !'
+//                 console.log(response)
+//                 return dispatch({ type: 'LOGIN_MAHASISWA_ERROR', response });
+//             }
+//         } else {
+//             if(snapshot.val() !== null){
+//                 if (item.password === snapshot.val().password){
+//                     const response = snapshot.val()
+//                     console.log('success', response)
+//                     return dispatch({ type: 'LOGIN_DOSEN', response });
+//                 } else {
+//                     const response = 'Password Salah !'
+//                     console.log(response)
+//                     return dispatch({ type: 'LOGIN_DOSEN_ERROR', response });
+//                 }
+//             } else {
+//                 const response = 'Username Tidak Ditemukan !'
+//                 console.log(response)
+//                 return dispatch({ type: 'LOGIN_DOSEN_ERROR', response });
+//             }
+//         }
+//     })
 // }

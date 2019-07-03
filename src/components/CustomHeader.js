@@ -1,28 +1,31 @@
 import React from 'react';
-import {View, TouchableOpacity, Text, StyleSheet, Platform} from 'react-native';
+import {View, TouchableOpacity, Text, StyleSheet, Platform, Image} from 'react-native';
 import {Icon} from 'native-base';
 
 const CustomHeader = ({title, onBack, backgroundColor}) => {
     return (
-        <View style={[style.parent, {backgroundColor: !backgroundColor ? '#2B2F85':backgroundColor}]}>
+        <View style={[style.parent, {backgroundColor: !backgroundColor ? '#036e64':backgroundColor}]}>
             {
                 onBack ?
-                    <View style={{width: '10%', justifyContent: 'center'}}>
+                    <View style={{width: '15%', justifyContent: 'center'}}>
                         {
                             Platform.OS === 'ios' ?
                                 <TouchableOpacity onPress={onBack}>
-                                    <Icon name="ios-arrow-back" type="Ionicons"
-                                          style={{paddingLeft: 5, color: '#fff'}}/>
+                                    <Image 
+                                        source={require('../assets/icons/back.png')}
+                                        style={{width: 19, height: 19, marginRight: 10, marginLeft: 10, tintColor: 'white'}} resizeMode="contain"/>
                                 </TouchableOpacity> :
                                 <TouchableOpacity onPress={onBack}>
-                                    <Icon name="arrow-back" style={{color: '#fff'}}/>
+                                    <Image 
+                                        source={require('../assets/icons/back.png')}
+                                        style={{width: 19, height: 19, marginRight: 10, marginLeft: 10, tintColor: 'white'}} resizeMode="contain"/>
                                 </TouchableOpacity>
                         }
                     </View>
-                    : <View style={{width: '10%', justifyContent: 'center'}}/>
+                    : <View style={{justifyContent: 'center'}}/>
             }
-            <View style={{marginLeft: 5, justifyContent: 'center', width: '80%'}}>
-                <Text numberOfLines={1} style={{alignSelf: 'center', color: '#fff'}}>{title}</Text>
+            <View style={{marginLeft: 10, width: '80%'}}>
+                <Text numberOfLines={1} style={{ color: '#fff', fontSize: 20, fontWeight: '500'}}>{title}</Text>
             </View>
         </View>
     )

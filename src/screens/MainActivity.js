@@ -52,7 +52,7 @@ export default class MainActivity extends Component {
                     <View style={styles.btnView}>
                         <TouchableOpacity
                             style={styles.btn}
-                            onPress={()=> Actions.Login({typeUser: 'Dosen'})}
+                            onPress={()=> Actions.Login({typeUser: 'dosen'})}
                         >
                             <Text style={styles.txtView}>
                                 Login Dosen
@@ -62,7 +62,7 @@ export default class MainActivity extends Component {
                     <View style={styles.btnView}>
                         <TouchableOpacity
                             style={styles.btn}
-                            onPress={()=>Actions.Login({typeUser: 'Mahasiswa'})}
+                            onPress={()=>Actions.Login({typeUser: 'mahasiswa'})}
                         >
                             <Text style={styles.txtView}>
                                 Login Mahasiswa

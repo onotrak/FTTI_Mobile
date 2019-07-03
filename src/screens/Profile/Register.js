@@ -10,6 +10,8 @@ import {
 import { Container, Content } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { registerMahasiswa } from '../../services/api';
+import CustomHeader from '../../components/CustomHeader';
+import AppVersion from '../../../app.json';
 // import { showToast } from '../../helpers/Main'
 
 export default class Register extends Component {
@@ -36,6 +38,10 @@ export default class Register extends Component {
     render() {
         return (
             <Container>
+                <CustomHeader
+                    title='FTTI Mobile'
+                    onBack={()=> Actions.pop()}
+                />
                 <Content style={styles.content}>
                     <View>
                         <Text style={styles.txtTitle}>
@@ -85,7 +91,7 @@ export default class Register extends Component {
                 </Content>
                     <View style={{marginBottom: 5}}>
                         <Text style={styles.txtVersion}>
-                            Version 1.1.1
+                            Version {AppVersion.version}
                         </Text>
                         <Text style={styles.txtVersion}>
                             React Native
@@ -108,13 +114,13 @@ export default class Register extends Component {
         }
 
         const body = {
-            nim: this.state.nim,
-            nama: this.state.nama,
-            nohp: this.state.nohp,
-            password: this.state.password,
+            nim,
+            nama,
+            nohp,
+            password: password,
         }
         registerMahasiswa(body);
-        Actions.Login({typeUser: 'Mahasiswa'})
+        Actions.Login({typeUser: 'mahasiswa'})
     } 
 }
 
